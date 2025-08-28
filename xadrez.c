@@ -1,34 +1,47 @@
 #include<stdio.h>
 
+void a(int n){     //utilizei a recursividade para a torre
+    if (n > 0){
+        printf("Direita \n", n);
+        a(n - 1);
+    }
+}
+
+void b(int t){     //utilizei a recursividade para a rainha
+    if (t > 0){
+        printf("Esquerda \n", t);
+        b(t - 1);
+    }
+}
+
 int main (){
 
-    int t = 1, b = 1; //declarei as variáveis da torre e do bispo
+    int torre = 5;
+    int rainha = 8;
 
     printf("\nTorre.\n");
-    do {
-        printf("Direita\n");
-        t++;
-    } while (t <= 5);
+    a(torre);
 
-    printf("\nBispo.\n");
-    while (b <= 5){
-        printf("Cima Direita\n");
-        b++;
+    printf("\nBispo.\n");      //utilizei loop aninhado para o bispo com a parte mais interna na horizontal e a externa na vertical conforme pedido
+    for (int i = 1; i <= 5; i++){
+        for(int j = 1; j <= 2; j++){
+            if(j % 2 == 1){
+            printf("Direita, ");
+            }
+        }
+        printf("Cima\n");
     }
 
-    printf("\nRainha.\n"); //a variável da rainha declarei dentro do "for"
-    for (int r = 1; r <= 8; r++){
-        printf("Esquerda\n");
-    }
-    
-    printf("\nCavalo.\n");//Fiz o movimento do cavalo usando duas vezes o for e uma vez o while
-    for(int c = 1; c <= 2; c++){
-        printf("Baixo, ");
-        while(c == 2){
-            printf("Esquerda");
-            c++;
+    printf("\nRainha.\n");
+    b(rainha);
+
+    printf("\nCavalo.\n");        //utilizei um loop complexo com multiplas variaveis para o cavalo
+    for (int i = 0, j = 4; i < 2 && j >= 2; i++, j--) {
+        printf("Cima, ");
+        if (j == 3){
+            printf("Direita");
         }
     }
-    
+
     return 0;
 }
